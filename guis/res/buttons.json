@@ -1,0 +1,9 @@
+{
+  "background": "res/background.jpeg",
+  "buttons" : [
+    { "icon" : "res/carplay.svg", "label" : "Carplay", "action" : "carplay_action"},
+    { "icon" : "res/youtube.png", "label" : "YouTube", "action" : "youtube_action"},
+    { "icon" : "res/hotspot.png", "label" : "Hotspot", "action" : "hotspot_action"},
+    { "icon" : "res/primevideo.svg", "label" : "Prime Video", "action" : "primevideo_action"}
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "scope" : "Define PID packets for OBD2 communication on the Corsa.",
+  "final" : false,
+  "categories" : [ "standard", "extended"],
+
+  "vehicle" : {
+    "make" : "Opel",
+    "model" : "Corsa",
+    "year" : 2010,
+    "generation" : "D",
+    "engine" : "gasoline",
+    "transmission" : "manual",
+    "gears" : 5,
+    "protocol" : "ISO15765-4 CAN 11bit 500kbps",
+    "elm_hint" : "ATSP6"
+  },
+
+  "polling" : {
+    "min_interval_ms" : 80,
+    "max_rate_hz" : 10
+  },
+
+  "pids" : {
+    "standard": [
+      {
+        "label": "engine_load",
+        "tx": "0104",
+        "rx": { "prefix": "4104", "bytes": ["A"] },
+        "formula": "(A * 100) / 255",
+        "unit": "%"
+      },
+      {
+        "label": "coolant_temperature",
+        "tx": "0105",
+        "rx": { "prefix": "4105", "bytes": ["A"] },
+        "formula": "A - 40",
+        "unit": "°C"
+      },
+      {
+        "label": "short_term_fuel_trim_bank1",
+        "tx": "0106",
+        "rx": { "prefix": "4106", "bytes": ["A"] },
+        "formula": "(A - 128) * 100 / 128",
+        "unit": "%"
+      },
+      {
+        "label": "long_term_fuel_trim_bank1",
+        "tx": "0107",
+        "rx": { "prefix": "4107", "bytes": ["A"] },
+        "formula": "(A - 128) * 100 / 128",
+        "unit": "%"
+      },
+      {
+        "label": "engine_rpm",
+        "tx": "010C",
+        "rx": { "prefix": "410C", "bytes": ["A","B"] },
+        "formula": "((A * 256) + B) / 4",
+        "unit": "rpm"
+      },
+      {
+        "label": "vehicle_speed",
+        "tx": "010D",
+        "rx": { "prefix": "410D", "bytes": ["A"] },
+        "formula": "A",
+        "unit": "km/h"
+      },
+      {
+        "label": "intake_air_temperature",
+        "tx": "010F",
+        "rx": { "prefix": "410F", "bytes": ["A"] },
+        "formula": "A - 40",
+        "unit": "°C"
+      },
+      {
+        "label": "maf_air_flow_rate",
+        "tx": "0110",
+        "rx": { "prefix": "4110", "bytes": ["A","B"] },
+        "formula": "((A * 256) + B) / 100",
+        "unit": "g/s"
+      },
+      {
+        "label": "throttle_position",
+        "tx": "0111",
+        "rx": { "prefix": "4111", "bytes": ["A"] },
+        "formula": "(A * 100) / 255",
+        "unit": "%"
+      },
+      {
+        "label": "oxygen_sensor_b1s1_voltage",
+        "tx": "0114",
+        "rx": { "prefix": "4114", "bytes": ["A"] },
+        "formula": "A / 200",
+        "unit": "V"
+      },
+      {
+        "label": "run_time_since_engine_start",
+        "tx": "011F",
+        "rx": { "prefix": "411F", "bytes": ["A","B"] },
+        "formula": "(A * 256) + B",
+        "unit": "s"
+      },
+      {
+        "label": "fuel_level",
+        "tx": "012F",
+        "rx": { "prefix": "412F", "bytes": ["A"] },
+        "formula": "(A * 100) / 255",
+        "unit": "%"
+      },
+      {
+        "label": "barometric_pressure",
+        "tx": "0133",
+        "rx": { "prefix": "4133", "bytes": ["A"] },
+        "formula": "A",
+        "unit": "kPa"
+      }
+    ],
+    "extended" : [
+      {
+        "label": "engine_oil_temperature",
+        "tx": "221940",
+        "rx": { "prefix": "621940", "bytes": ["A"] },
+        "formula": "A - 40",
+        "unit": "°C"
+      },
+      {
+        "label": "accelerator_pedal_position",
+        "tx": "2211A7",
+        "rx": { "prefix": "6211A7", "bytes": ["A"] },
+        "formula": "(A * 100) / 255",
+        "unit": "%"
+      },
+      {
+        "label": "ecu_battery_voltage",
+        "tx": "221214",
+        "rx": { "prefix": "621214", "bytes": ["A","B"] },
+        "formula": "((A * 256) + B) / 1000",
+        "unit": "V"
+      },
+      {
+        "label": "intake_manifold_pressure",
+        "tx": "221946",
+        "rx": { "prefix": "621946", "bytes": ["A"] },
+        "formula": "A",
+        "unit": "kPa"
+      },
+      {
+        "label": "engine_torque_estimate",
+        "tx": "22195C",
+        "rx": { "prefix": "62195C", "bytes": ["A"] },
+        "formula": "A - 125",
+        "unit": "Nm"
+      },
+      {
+        "label": "clutch_switch_state",
+        "tx": "2213A6",
+        "rx": { "prefix": "6213A6", "bytes": ["A"] },
+        "formula": "A",
+        "unit": "boolean",
+        "notes": "0 = released, 1 = pressed"
+      }
+    ]
+  }
+}
