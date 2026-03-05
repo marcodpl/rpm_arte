@@ -143,6 +143,7 @@ async def log_writer(log_queue, filename="obd_log.csv"):
 
         while True:
             timestamp, label, value = await log_queue.get()
+            print(f"{timestamp},{label},{value}")
             f.write(f"{timestamp},{label},{value}\n")
 
 
